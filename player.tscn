@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://dv60ljeyw7yfw"]
+
+[ext_resource type="Texture2D" uid="uid://bi0lnc0r5sfpd" path="res://art/morlan_overworld_front.png" id="1_pjj75"]
+[ext_resource type="Script" path="res://Player.cs" id="2_ecjkk"]
+[ext_resource type="Texture2D" uid="uid://csupvkhvpqsly" path="res://art/morlan_overworld_front_walk_1.png" id="2_efuvl"]
+[ext_resource type="Texture2D" uid="uid://bty2claq2q23o" path="res://art/morlan_overworld_front_walk_2.png" id="3_i34li"]
+[ext_resource type="Texture2D" uid="uid://cqlxenpsuuelt" path="res://art/morlan_overworld_left.png" id="3_nra1l"]
+[ext_resource type="Texture2D" uid="uid://cld7vgvvvat8h" path="res://art/morlan_overworld_right.png" id="4_60jhc"]
+[ext_resource type="Texture2D" uid="uid://beaibs8w03oj1" path="res://art/morlan_overworld_back.png" id="5_gtcof"]
+[ext_resource type="Texture2D" uid="uid://sr0sielt3cdi" path="res://art/morlan_overworld_left_walk_1.png" id="5_in2s1"]
+[ext_resource type="Texture2D" uid="uid://b5xj1p760yv4s" path="res://art/morlan_overworld_left_walk_2.png" id="6_ieoqh"]
+[ext_resource type="Texture2D" uid="uid://davd0tuljtd2d" path="res://art/morlan_overworld_right_walk_1.png" id="7_h11x0"]
+[ext_resource type="Texture2D" uid="uid://35d8e6sv4ufb" path="res://art/morlan_overworld_right_walk_2.png" id="8_xmor5"]
+[ext_resource type="Texture2D" uid="uid://cjuuo5lkpndyi" path="res://art/morlan_overworld_back_walk_1.png" id="9_p7owu"]
+[ext_resource type="Texture2D" uid="uid://3fevawo4flbj" path="res://art/morlan_overworld_back_walk_2.png" id="10_idbih"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c8vwh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pjj75")
+}],
+"loop": true,
+"name": &"standing_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nra1l")
+}],
+"loop": true,
+"name": &"standing_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_60jhc")
+}],
+"loop": true,
+"name": &"standing_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_gtcof")
+}],
+"loop": true,
+"name": &"standing_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_efuvl")
+}, {
+"duration": 0.5,
+"texture": ExtResource("1_pjj75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i34li")
+}],
+"loop": true,
+"name": &"walking_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_in2s1")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_nra1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ieoqh")
+}],
+"loop": true,
+"name": &"walking_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_h11x0")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_60jhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xmor5")
+}],
+"loop": true,
+"name": &"walking_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_p7owu")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_gtcof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_idbih")
+}],
+"loop": true,
+"name": &"walking_up",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hopxx"]
+size = Vector3(0.834534, 1.08728, 0.37146)
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("2_ecjkk")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+sprite_frames = SubResource("SpriteFrames_c8vwh")
+animation = &"walking_down"
+frame_progress = 0.536379
+
+[node name="Sprite" type="Sprite3D" parent="."]
+visible = false
+modulate = Color(0.993593, 0.956007, 0.944993, 1)
+texture = ExtResource("1_pjj75")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.00159302, -0.00872803, 0.00423584)
+shape = SubResource("BoxShape3D_hopxx")
