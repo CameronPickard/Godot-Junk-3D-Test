@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://kx5cg6b1dcft"]
+[gd_scene load_steps=8 format=3 uid="uid://kx5cg6b1dcft"]
 
 [ext_resource type="PackedScene" uid="uid://dv60ljeyw7yfw" path="res://player.tscn" id="1_nmq2s"]
+[ext_resource type="Script" path="res://DirectionalLight3D.gd" id="1_pquuv"]
 [ext_resource type="PackedScene" uid="uid://did8wum3dy4cm" path="res://level_models/gruntysLair1/gruntys_lair_dumb_test.gltf" id="2_a3kt0"]
 [ext_resource type="PackedScene" uid="uid://r0rq8l17st7u" path="res://level_models/gruntysLair2/gruntys_lair_dumb_test_2.gltf" id="3_7v4ia"]
 
@@ -28,8 +29,13 @@ mesh = SubResource("BoxMesh_vv5kg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.987228, 0.159313, 0, -0.159313, 0.987228, 0.302287, 1.50638, 2.34078)
-visible = false
-light_energy = 4.071
+light_color = Color(0, 0.4, 0.266667, 1)
+light_energy = 13.801
+light_indirect_energy = 8.784
+light_volumetric_fog_energy = 9.432
+light_angular_distance = 85.14
+light_negative = true
+script = ExtResource("1_pquuv")
 
 [node name="Player" parent="." instance=ExtResource("1_nmq2s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000958145, 0.62418, 0.0388956)
