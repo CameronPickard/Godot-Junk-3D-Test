@@ -8,6 +8,9 @@ public partial class Player : CharacterBody3D
 	public float fall_acceleration = -50f;
 	public AnimatedSprite3D animatedSprite3D;
 	public Direction lastDirection = Direction.Down;
+	private float _currentYvelocity = -50f;
+	private static float _jumpVelocity = 100f;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -71,9 +74,15 @@ public partial class Player : CharacterBody3D
 		}
 		animatedSprite3D.Animation = animationName;
 		animatedSprite3D.Play();
+		if (IsOnFloor() && Input.IsActionPressed("jump")) 
+		{
+			_currentYvelocity = _jumpVelocity;
+			direction.Y += _currentYvelocity * (float)delta;
+		}
 		if (!IsOnFloor())
 		{
-			direction.Y += fall_acceleration * (float)delta;
+			_currentYvelocity = Math.Max(_currentYvelocity - (180 * (float) delta), fall_acceleration);
+			direction.Y += _currentYvelocity * (float)delta;
 		}
 		Velocity = direction;
 		MoveAndSlide();
